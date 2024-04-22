@@ -1,15 +1,3 @@
-#!/bin/bash
-
-if ($# -ne i) then
-	echo "Usage: $0 <username>"
-	exit 1
-fi
-	USERNAME="$1"
-
-# Chech if the user exits
-	if id "USERNAME" &>dev/null; then
-	sudo -u "USERNAME" whoami
-else
-
-	echo "User $USERNAME does not exit."
-fi
+#!/usr/bin/env bash
+# Runs whoami command as the user provided in argument
+sudo -u "$1" whoami
