@@ -8,6 +8,8 @@ global
         group haproxy
         daemon
 
+        dhparam
+        tune.ssl.default-dh-param 2048
         # Default SSL material locations
         ca-base /etc/ssl/certs
         crt-base /etc/ssl/private
@@ -35,6 +37,7 @@ defaults
 
 frontend koncepts-frontend
         bind *:80
+        bind *:443 ssl crt /etc/letsencrypt/live/www.koncepts.tech/koncepts.pem 
         mode http
         http-request redirect scheme https code 301 unless { ssl_fc }
         http-request set-header X_Forwarded-Proto http
